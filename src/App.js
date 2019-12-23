@@ -1,14 +1,21 @@
 import React from 'react'
 
 import Navbar from './components/Navbar'
-import Routes from './routes'
+import {BrowserRouter, Route, Switch, useParams} from 'react-router-dom'
+import {Algebra, Home} from './components'
 
 const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <Routes />
-    </div>
+      <Switch>
+          <Route exact path="/:id">
+            <Algebra />
+          </Route> 
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 

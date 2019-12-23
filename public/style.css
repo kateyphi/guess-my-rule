@@ -1,18 +1,39 @@
 body {
     font-family: sans-serif;
+    background: #BDA0BC;
+    margin: 0;
   }
   
+
+  .title {
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 30px;
+      font-weight: bold;
+      margin: 0px;
+  }
+
+  .navbar {
+      background-color: #A2708A;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+  }
+
+  .navlink {
+    color: black;
+    margin: 1em;
+    background-color: #824670;
+    border-radius: 3px;
+    padding: 3px;
+  }
+
   a {
     text-decoration: none;
   }
   
   label {
     display: block;
-  }
-  
-  nav a {
-    display: inline-block;
-    margin: 1em;
   }
   
   form {
@@ -23,16 +44,13 @@ body {
     text-align: center;
   }
   
-  .navlink {
-    color: green;
-    margin: 1em;
-  }
+
   
   .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     grid-gap: 5px;
-    background-color: #2196F3;
+    background-color: #8A7589; 
     padding: 5px;
   }
   

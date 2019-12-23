@@ -8,10 +8,11 @@ const config = {}
 const math = create(all, config)
 
 export default class Table extends React.Component {
-    constructor(){
-      super()
+    constructor(props){
+      super(props)
       this.state = {
         coefficients: [Math.floor(Math.random()*10), Math.floor(Math.random()*10)],
+        level: props.level,
         inputs: [],
         currentOutput: ''
       }
