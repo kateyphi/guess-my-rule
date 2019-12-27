@@ -28,6 +28,10 @@ body {
     padding: 3px;
   }
 
+  .new {
+      text-align: center;
+  }
+
   a {
     text-decoration: none;
   }
@@ -69,7 +73,7 @@ body {
     grid-area: 1 / 3 / 11 / 12;
     background-color: white;
     display: flex;
-    justify-content: left;
+    justify-content: center;
   }
   
   #machine {
@@ -84,22 +88,22 @@ body {
     width: 250px;
     height: 80px;
     left: 45px;
-    top: 150px;
+    top: 178px;
     z-index: 2;
   }
   
   #machineinput {
     position: absolute;
     left: 60px;
-    top: 50px;
+    top: 75px;
     z-index: 3;
     color: red;
   }
   
   #machineoutput {
     position: absolute;
-    left: 255px;
-    top: 310px;
+    left: 258px;
+    top: 335px;
     z-index: 4;
     color: purple;
   }

@@ -6,7 +6,7 @@ const InputOutput = (props) => {
   return (
     <React.Fragment>
       <div className="item">{input}</div>
-      <div className="item">{props.testFunction(input)}</div>
+      <div className="item">{props.fxn(input)}</div>
     </React.Fragment>
   )
 }

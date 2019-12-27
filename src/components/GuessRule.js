@@ -33,9 +33,15 @@ export default class GuessRule extends Component {
 
   guessRule(guess){
     const simpGuess = math.simplify(guess)
-    const myRule = math.simplify(`${this.props.coefficients[0]}x + ${this.props.coefficients[1]}`)
-    if (simpGuess.equals(myRule)) {
-      return `You got it! The rule was y = ${myRule}`
+    let rule = math.simplify(this.props.rule)
+    // if (this.props.level === '1'){ 
+    //   myRule = math.simplify(`${this.props.coefficients[0]}x`)
+    // }
+    // if (this.props.level === '4'){
+    //   myRule = math.simplify(`${this.props.coefficients[0]}x + ${this.props.coefficients[1]}`)
+    // }
+    if (simpGuess.equals(rule)) {
+      return `You got it! The rule was y = ${rule}`
     } else {
       return 'Nope!'
     }
@@ -50,9 +56,6 @@ export default class GuessRule extends Component {
     </form>
     <div>
       {this.state.correct}
-    </div>
-    <div>
-      <button type="button" onClick={this.props.newRule}>Generate a new rule</button>
     </div>
     </div>
     )
