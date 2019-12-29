@@ -33,14 +33,8 @@ export default class GuessRule extends Component {
 
   guessRule(guess){
     const simpGuess = math.simplify(guess)
-    let rule = math.simplify(this.props.rule)
-    // if (this.props.level === '1'){ 
-    //   myRule = math.simplify(`${this.props.coefficients[0]}x`)
-    // }
-    // if (this.props.level === '4'){
-    //   myRule = math.simplify(`${this.props.coefficients[0]}x + ${this.props.coefficients[1]}`)
-    // }
-    if (simpGuess.equals(rule)) {
+    let rule = this.props.rule
+    if (simpGuess.equals(math.simplify(rule))) {
       return `You got it! The rule was y = ${rule}`
     } else {
       return 'Nope!'

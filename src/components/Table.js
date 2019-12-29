@@ -12,7 +12,7 @@ export default class Table extends React.Component {
       super(props)
       this.state = {
         coefficients: [Math.floor(Math.random()*9)+1, Math.floor(Math.random()*9)+1],
-        bin: Math.floor(Math.random()*2),
+        bin: Math.floor(Math.random()*3),
         rule: '',
         level: props.level,
         inputs: [],
@@ -30,9 +30,37 @@ export default class Table extends React.Component {
 
     getRule(level, coeff1=this.state.coefficients[0], coeff2=this.state.coefficients[1], bin=this.state.bin){
       if (level === '1'){
-        let rule = bin ? `${coeff1} + x` : `${coeff1}x`
-        return rule
-        
+        if (bin === 0){
+          return  `${coeff1} + x` 
+        } else if (bin === 1){
+          return `${coeff1}x`
+        } else {
+          return `x^2`
+        }
+      } else if (level === '2'){
+        if (bin === 0){
+          return `x - ${coeff1}`
+        } else if (bin === 1){
+          return `-${coeff1}x`
+        } else {
+          return `x^3`
+        }
+      } else if (level === '3'){
+        if (bin === 0){
+          return `${coeff1}x + ${coeff2}`
+        } else if (bin === 1){
+          return `${coeff1}x - ${coeff2}`
+        } else {
+          return `x^2 + ${coeff1}`
+        } 
+      } else if (level === '4'){
+        if (bin === 0){
+          return `${coeff1}^x`
+        } else if (bin === 1){
+          return `x^3 + ${coeff1}`
+        } else {
+          return `x^3 - ${coeff1}`
+        }
       } else {
         console.log('something went wrong')
         return 'something went wrong'
@@ -45,7 +73,37 @@ export default class Table extends React.Component {
       let level = this.state.level
       let coefficients = this.state.coefficients
       if (level === '1'){
-        return bin ? math.format(+coefficients[0] + +input, {precision: 14}) : math.format(coefficients[0]*input, {precision: 14})
+        if (bin === 0){
+          return math.format(+coefficients[0] + +input, {precision: 14}) 
+        } else if (bin === 1){
+          return math.format(coefficients[0]*input, {precision: 14})
+        } else {
+          return math.evaluate(`${input}^2`)
+        }
+      } else if (level === '2'){
+        if (bin === 0){
+          return math.format(+input - +coefficients[0], {precision: 14}) 
+        } else if (bin === 1){
+          return math.format(coefficients[0]*input*-1)
+        } else {
+          return math.evaluate(`${input}^3`)
+        }
+      } else if (level === '3'){
+        if (bin === 0){
+          return math.format(coefficients[0]*input + coefficients[1])
+        } else if (bin === 1){
+          return math.format(coefficients[0]*input - coefficients[1])
+        } else {
+          return math.evaluate(`${input}^2 + ${coefficients[0]}`)
+        }
+      } else if (level === '4'){
+        if (bin === 0){
+          return math.evaluate(`${coefficients[0]}^${input}`)
+        } else if (bin === 1){
+          return math.evaluate(`${input}^3 + ${coefficients[0]}`)
+        } else {
+          return math.evaluate(`${input}^3 - ${coefficients[0]}`)
+        }
       }
     }
 
@@ -57,10 +115,9 @@ export default class Table extends React.Component {
     }
 
     newRule(){
-      console.log('just got to newRule')
       let coeff1 = Math.ceil(Math.random()*9)
       let coeff2 = Math.ceil(Math.random()*9)
-      let bin = Math.floor(Math.random()*2)
+      let bin = Math.floor(Math.random()*3)
       this.setState({
         coefficients: [coeff1, coeff2],
         bin: bin,
@@ -71,7 +128,6 @@ export default class Table extends React.Component {
     }
 
     render(){
-      console.log(this.state)
       return (
         <div>
 
