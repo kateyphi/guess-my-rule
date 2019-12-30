@@ -14,7 +14,7 @@ export default class Table extends React.Component {
         coefficients: [Math.floor(Math.random()*9)+1, Math.floor(Math.random()*9)+1],
         bin: Math.floor(Math.random()*3),
         rule: '',
-        level: props.level,
+        level: this.props.match.params.id,
         inputs: [],
         currentOutput: ''
       }
@@ -24,8 +24,16 @@ export default class Table extends React.Component {
       this.getRule = this.getRule.bind(this)
     }
 
+
     componentDidMount(){
-      this.setState({rule: this.getRule(this.state.level)})
+      this.setState({level: this.props.match.params.id})
+      this.setState({rule: this.getRule(this.props.match.params.id)})
+    }
+
+    componentDidUpdate(){
+      if (this.props.match.params.id !== this.state.level){
+        this.newRule(this.props.match.params.id)
+      }
     }
 
     getRule(level, coeff1=this.state.coefficients[0], coeff2=this.state.coefficients[1], bin=this.state.bin){
@@ -121,16 +129,19 @@ export default class Table extends React.Component {
       this.setState({
         coefficients: [coeff1, coeff2],
         bin: bin,
+        level: this.props.match.params.id,
         inputs: [],
         currentOutput: '',
-        rule: this.getRule(this.state.level, coeff1, coeff2, bin)
+        rule: this.getRule(this.props.match.params.id, coeff1, coeff2, bin)
       })
     }
 
     render(){
+      let level = this.props.match.params.id
       return (
         <div>
-
+    <h3>Level {this.state.level}</h3>
+        <br /><span>Think of a number, any number. Enter the number into the "Input:" field and press the button to send it through the machine. The table will show the corresponding inputs and outputs. Keep putting inputs until you have a guess of what rule the machine was following to get the output.</span>
         <br />
         <div className="grid-container">
           <div className="xylabel">Inputs (x)</div>
